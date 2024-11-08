@@ -12,8 +12,8 @@ set(PLUTO_INSTALL_PREFIX_BIN_DIR "${PLUTO_INSTALL_PREFIX_DIR}/bin")
 set(PLUTO_INSTALL_PREFIX_LIB_DIR "${PLUTO_INSTALL_PREFIX_DIR}/lib")
 set(PLUTO_INSTALL_PREFIX_INCLUDE_DIR "${PLUTO_INSTALL_PREFIX_DIR}/include")
 
-set(PLUTO_LIBCLANG_PREFIX "$MY_EXTERNAL_SDD_WORK_DIR/compiler-projects/llvm-9-src-build/installation" CACHE STRING
-    "The prefix to libclang used by Pluto (version < 10 required).")
+# Already taking this from cmake build config. Check "polymer/CmakeLists.txt"
+# set(PLUTO_LIBCLANG_PREFIX "$MY_EXTERNAL_SDD_WORK_DIR/compiler-projects/llvm-9-src-build/installation" CACHE STRING "The prefix to libclang used by Pluto (version < 10 required).")
 
 
 # Function definition: to copy directories recursively (files, folders, symlinks...)

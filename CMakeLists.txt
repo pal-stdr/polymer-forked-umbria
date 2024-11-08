@@ -92,6 +92,13 @@ set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" "${CMAKE_CURRENT_SOURCE_DIR}/cmake"
 find_package(GMP REQUIRED)
 
 # Configure and build PLUTO to ${CMAKE_BUILD_DIR}/pluto
+
+# Check if PLUTO_LIBCLANG_PREFIX is defined. This is mandatory to satify pluto's "pet-for-pluto" clang dependency.
+# This variable will be used in "cmake/AddPluto.cmake"
+if(NOT DEFINED PLUTO_LIBCLANG_PREFIX)
+  message(FATAL_ERROR "PLUTO_LIBCLANG_PREFIX is not set. Please provide the path using -DPLUTO_LIBCLANG_PREFIX=<path/to/llvm-clang-build>.")
+endif()
+
 include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/AddPluto.cmake")
 include_directories("${PLUTO_INCLUDE_DIR}")
 message(STATUS "Will build and use Polymer-bundled Pluto")
