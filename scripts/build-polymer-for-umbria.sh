@@ -56,7 +56,7 @@ cmake   \
 
 
 # Mandatory for avoiding regression test failure (libosl.so.0 linker error)
-export LD_LIBRARY_PATH="$PWD/pluto/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+export LD_LIBRARY_PATH="${BUILD_FOLDER_DIR}/pluto/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 
 
 # Run build

@@ -1,6 +1,7 @@
 # Polymer: bridging polyhedral tools to MLIR
 
 - You can find the original README.md here [README-ORIGINAL.md](README-ORIGINAL.md).
+- Setup for Polygeist commit `2e6bb368ff4894993eb2102c1da3389fa18e49ef`. llvm-project lives inside `polygeist`. The LLVM commit is `30d87d4a5d02f00ef58ebc24a0ee5c6c370b8b4c` (clang version `14.0.0`)
 
 
 
@@ -18,14 +19,43 @@
 
 ## pre-requisite
 
-- You need specific `llvm` build that has been used for polygeist
+- `cmake`, `ninja` required.
+
+- You need specific `llvm` build that has been used for polygeist. First clone it
+
+```sh
+git clone -b release/9.x --depth 1 https://github.com/llvm/llvm-project.git llvm-9-src-build
+```
+
+- Then use the following build shell.
+
+```sh
+mkdir -p build installation
+cd build/
+
+echo $PWD
+
+cmake   \
+    -G Ninja    \
+    -S ../llvm  \
+    -B .    \
+    -DCMAKE_BUILD_TYPE=Release      \
+    -DCMAKE_INSTALL_PREFIX=../installation  \
+    -DLLVM_ENABLE_PROJECTS="llvm;clang;lld" \
+    -DLLVM_INSTALL_UTILS=ON
+
+cmake --build .
+
+ninja install
+```
+
 
 ### How to add `llvm-9` build path to meet `pluto` dependency (actually `pet-for-pluto` dependency)
 
 - Add your `llvm-9` src build or installation dir to the following `cmake` config variable. Check the build shell for better understanding.
 
 ```cmake
--DPLUTO_LIBCLANG_PREFIX="${PLUTO_LIBCLANG_PREFIX_DIR}"
+-DPLUTO_LIBCLANG_PREFIX="/path/to/llvm-9-src-build/installation"
 ```
 
 
@@ -35,7 +65,7 @@
 ```sh
 
 # The absolute path to the directory of this script.
-# Guess, your polymer lives here. But it could be inside a dir also.
+# Guess, your polymer lives here.
 BUILD_SCRIPT_ROOT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 
@@ -63,7 +93,7 @@ cd "${BUILD_FOLDER_DIR}"/
 
 cmake   \
     -G Ninja    \
-    -S "${BUILD_SCRIPT_ROOT_DIR}r"  \
+    -S "${BUILD_SCRIPT_ROOT_DIR}"  \
     -B .    \
     -DCMAKE_BUILD_TYPE=DEBUG \
     -DCMAKE_INSTALL_PREFIX="${INSTALLATION_FOLDER_DIR}"  \
@@ -75,7 +105,7 @@ cmake   \
 
 
 # Mandatory for avoiding regression test failure (libosl.so.0 linker error)
-export LD_LIBRARY_PATH="$PWD/pluto/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+export LD_LIBRARY_PATH="${BUILD_FOLDER_DIR}/pluto/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 
 
 # Run build
