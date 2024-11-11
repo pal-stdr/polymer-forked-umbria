@@ -4,3 +4,7 @@
 [submodule "example/polybench-golden"]
 	path = example/polybench-golden
 	url = https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1.git
+[submodule "llvm-9-src-for-polymer-pluto"]
+	path = llvm-9-src-for-polymer-pluto
+	url = https://github.com/llvm/llvm-project.git
+	branch = release/9.x

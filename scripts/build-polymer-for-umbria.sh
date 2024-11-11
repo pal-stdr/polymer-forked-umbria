@@ -25,7 +25,7 @@ POLYGEIST_LLVM_BUILD_DIR="${POLSCA_ROOT_DIR}/llvm-build-for-polygeist-polymer"
 
 
 # This is mandatory to satify pluto's "pet-for-pluto" clang dependency.
-PLUTO_LIBCLANG_PREFIX_DIR="${MY_EXTERNAL_SDD_WORK_DIR}/compiler-projects/llvm-9-src-build/installation"
+PLUTO_LIBCLANG_PREFIX_DIR="${POLSCA_ROOT_DIR}/llvm-9-src-build-for-polymer-pluto-installation"
 
 
 # Set Polymer build folder name

@@ -50,3 +50,14 @@ tmp/
 
 # Python
 *.pyc
+
+
+
+# ----------------------- UMBRIA ADDITION ------------------------
+
+llvm-9-src-build-for-polymer-pluto/
+llvm-9-src-build-for-polymer-pluto-installation/
+
+
+llvm-14-src-build-for-polymer/
+llvm-14-src-build-for-polymer-installation/
